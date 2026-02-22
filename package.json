@@ -2,11 +2,20 @@
   "name": "notetaker",
   "version": "1.0.0",
   "description": "Local-first markdown note-taking app",
+  "license": "MIT",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "npx nodemon server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pjsroberts/notetaker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pjsroberts/notetaker/issues"
+  },
+  "homepage": "https://github.com/pjsroberts/notetaker#readme",
   "dependencies": {
     "express": "^4.21.0",
     "ws": "^8.18.0",
