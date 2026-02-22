@@ -1,0 +1,142 @@
+/* ===== CodeMirror Overrides ===== */
+.CodeMirror {
+  height: 100% !important;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.CodeMirror-gutters {
+  background: var(--bg-primary);
+  border-right: 1px solid var(--border-subtle);
+}
+
+.CodeMirror-linenumber {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.CodeMirror-cursor {
+  border-left: 2px solid var(--accent);
+}
+
+.CodeMirror-selected {
+  background: rgba(137, 180, 250, 0.15) !important;
+}
+
+.CodeMirror-focused .CodeMirror-selected {
+  background: rgba(137, 180, 250, 0.25) !important;
+}
+
+.CodeMirror-matchingbracket {
+  color: var(--green) !important;
+  font-weight: bold;
+}
+
+/* GFM Mode Syntax Highlighting */
+.cm-header {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+.cm-header-1 { font-size: 1.6em; }
+.cm-header-2 { font-size: 1.3em; }
+.cm-header-3 { font-size: 1.1em; }
+
+.cm-strong {
+  color: var(--text-primary) !important;
+  font-weight: 700;
+}
+
+.cm-em {
+  color: var(--text-primary) !important;
+  font-style: italic;
+}
+
+.cm-link {
+  color: var(--accent) !important;
+  text-decoration: none;
+}
+
+.cm-url {
+  color: var(--text-muted) !important;
+}
+
+.cm-comment {
+  color: var(--text-muted) !important;
+}
+
+.cm-quote {
+  color: var(--green) !important;
+}
+
+.cm-strikethrough {
+  text-decoration: line-through;
+  color: var(--text-muted) !important;
+}
+
+.cm-tag {
+  color: var(--red) !important;
+}
+
+.cm-attribute {
+  color: var(--yellow) !important;
+}
+
+.cm-string {
+  color: var(--green) !important;
+}
+
+.cm-variable-2 {
+  color: var(--accent) !important;
+}
+
+.cm-keyword {
+  color: var(--red) !important;
+}
+
+.cm-number {
+  color: var(--yellow) !important;
+}
+
+/* CodeMirror Dialog (search) */
+.CodeMirror-dialog {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  padding: 4px 8px;
+}
+
+.CodeMirror-dialog input {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  outline: none;
+}
+
+.CodeMirror-dialog input:focus {
+  border-color: var(--accent);
+}
+
+/* Active line highlight */
+.CodeMirror-activeline-background {
+  background: rgba(137, 180, 250, 0.05);
+}
+
+/* Scrollbar inside CodeMirror */
+.CodeMirror-vscrollbar::-webkit-scrollbar,
+.CodeMirror-hscrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.CodeMirror-vscrollbar::-webkit-scrollbar-thumb,
+.CodeMirror-hscrollbar::-webkit-scrollbar-thumb {
+  background: var(--bg-hover);
+  border-radius: 4px;
+}

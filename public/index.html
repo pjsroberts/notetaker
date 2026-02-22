@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notetaker</title>
+
+  <!-- CodeMirror 5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/theme/material-darker.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/dialog/dialog.min.css">
+
+  <!-- highlight.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css">
+
+  <!-- App styles -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/editor.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <h1 class="app-title">Notetaker</h1>
+        <div class="sidebar-actions">
+          <button id="btn-new-note" class="sidebar-btn" title="New Note">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z"/></svg>
+          </button>
+          <button id="btn-new-folder" class="sidebar-btn" title="New Folder">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 2.5a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25v-8.5a.25.25 0 00-.25-.25H7.5L6.2 3.1a.75.75 0 00-.6-.3H2a.25.25 0 00-.25.25z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+      </div>
+      <div id="file-tree"></div>
+    </aside>
+
+    <!-- Sidebar resize handle -->
+    <div id="sidebar-resizer"></div>
+
+    <!-- Main content -->
+    <main id="main-content">
+      <!-- Toolbar -->
+      <div id="toolbar"></div>
+
+      <!-- Editor + Preview -->
+      <div id="editor-container" class="view-mode-split">
+        <div id="editor-pane">
+          <textarea id="editor-textarea"></textarea>
+        </div>
+        <div id="divider"></div>
+        <div id="preview-pane">
+          <div id="preview-content" class="markdown-body"></div>
+        </div>
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" style="display:none">
+        <div class="empty-state-content">
+          <h2>No note selected</h2>
+          <p>Select a note from the sidebar or create a new one.</p>
+          <button id="btn-empty-new" class="btn-primary">Create a Note</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Context menu -->
+  <div id="context-menu" class="context-menu" style="display:none">
+    <button class="context-item" data-action="rename">Rename</button>
+    <button class="context-item" data-action="delete">Delete</button>
+  </div>
+
+  <!-- CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/mode/overlay.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/selection/active-line.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/markdown/markdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/gfm/gfm.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/python/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/css/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/closebrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/edit/matchbrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/search/search.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/search/searchcursor.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/addon/dialog/dialog.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+
+  <!-- App scripts -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/websocket.js"></script>
+  <script src="/js/wikilinks.js"></script>
+  <script src="/js/sidebar.js"></script>
+  <script src="/js/editor.js"></script>
+  <script src="/js/preview.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
